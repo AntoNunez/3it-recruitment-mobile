@@ -1,16 +1,14 @@
+import { StackScreenProps } from '@react-navigation/stack'
+import { Card } from '@rneui/base'
 import React, { useState } from 'react'
-import { Button, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { SelectList } from 'react-native-dropdown-select-list'
 import { ScreenStyles } from '../theme/LoginTheme'
 
+interface Props extends StackScreenProps<any, any> { }
 
 
-
-
-
-
-
-export const EntrevistasScreen = () => {
+export const EntrevistasScreen = ({ navigation }: Props) => {
 
   const [selected, setSelected] = useState('')
   const data = [
@@ -28,59 +26,10 @@ export const EntrevistasScreen = () => {
       >
 
         <View style={ScreenStyles.Container}>
-          <Text style={ScreenStyles.titleSuperior}>Nueva Entrevista</Text>
+          <Text style={ScreenStyles.titleSuperior}>Entrevistas</Text>
 
-          <Text style={ScreenStyles.label}>Nombre del postulante:</Text>
-          <TextInput
-            placeholder='Ingresa tu nombre'
-            placeholderTextColor='rgba(255,255,255,0.4)'
-            underlineColorAndroid='white'
-            style={[
-              ScreenStyles.inputField,
-              (Platform.OS === 'ios') && ScreenStyles.InputFieldIOS
-            ]}
-            selectionColor='white'
-
-            // onChangeText={(value) => onChange(Value, 'nombre')}
-            //value={nombre}
-            //onSubmitEditing={onLogin}
-
-            autoCapitalize='none'
-            autoCorrect={false}
-          />
-          <Text style={ScreenStyles.label}>Apellidos del Postulante:</Text>
-          <TextInput
-            placeholder='Ingresa tu apellido'
-            placeholderTextColor='rgba(255,255,255,0.4)'
-            underlineColorAndroid='white'
-            secureTextEntry={true}
-            style={[
-              ScreenStyles.inputField,
-              (Platform.OS === 'ios') && ScreenStyles.InputFieldIOS
-            ]}
-            selectionColor='white'
-
-          //onChangeText={(value) => onChange(value, 'password')}
-          //value={password}
-          //onSubmitEditing={onLogin}
-
-          />
-          <View>
-            <Text style={ScreenStyles.label}>Celula:</Text>
-            <SelectList
-              data={data}
-              setSelected={setSelected}
-              placeholder={'Selecione opcion'}
-              boxStyles={{ borderColor: 'white' }}
-              inputStyles={{ fontSize: 15, color: 'white' }}
-              dropdownTextStyles={{ color: 'white', borderColor: 'white' }}
-              dropdownItemStyles={{ shadowColor: 'grey' }}
-            />
-          </View>
-
-
-          <Text style={ScreenStyles.label}>Rol:</Text>
-          <View>
+          <View style={styles.select}>
+            <Text style={ScreenStyles.label}>Rol:</Text>
 
             <SelectList
               data={data}
@@ -93,59 +42,42 @@ export const EntrevistasScreen = () => {
             />
           </View>
 
-
-
-          <Text style={ScreenStyles.label}>Ciudad:</Text>
-          <TextInput
-            placeholder='Ingresa tu ciudad'
-            placeholderTextColor='rgba(255,255,255,0.4)'
-            underlineColorAndroid='white'
-            style={[
-              ScreenStyles.inputField,
-              (Platform.OS === 'ios') && ScreenStyles.InputFieldIOS
-            ]}
-            selectionColor='white'
-
-            // onChangeText={(value) => onChange(Value, 'nombre')}
-            //value={nombre}
-            //onSubmitEditing={onLogin}
-
-            autoCapitalize='none'
-            autoCorrect={false}
-          />
-          <Text style={ScreenStyles.label}>Fecha y Hora:</Text>
-          <TextInput
-            //Icono Calendario
-            placeholderTextColor='rgba(255,255,255,0.4)'
-            underlineColorAndroid='white'
-            style={[
-              ScreenStyles.inputField,
-              (Platform.OS === 'ios') && ScreenStyles.InputFieldIOS
-            ]}
-            selectionColor='white'
-
-            // onChangeText={(value) => onChange(Value, 'nombre')}
-            //value={nombre}
-            //onSubmitEditing={onLogin}
-
-            autoCapitalize='none'
-            autoCorrect={false}
-          />
-
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 50 }}>
-            <Button 
-              title='Cancelar'
-              onPress={() => { }}
-              color="white"
-              
+          <View style={styles.select}>
+            <Text style={ScreenStyles.label}>Nombre:</Text>
+            <SelectList
+              data={data}
+              setSelected={setSelected}
+              placeholder={'Selecione opcion'}
+              boxStyles={{ borderColor: 'white' }}
+              inputStyles={{ fontSize: 15, color: 'white' }}
+              dropdownTextStyles={{ color: 'white', borderColor: 'white' }}
+              dropdownItemStyles={{ shadowColor: 'grey' }}
             />
+          </View>
+          <View>
+            
+          </View>
 
-            <Button
-              title='Comenzar'
-              onPress={() => { }}
-              color="white"
+          <View style={styles.textAreaContainer} >
+            <TextInput
+              style={styles.textArea}
+              underlineColorAndroid="transparent"
+              // placeholder="Type something"
+              placeholderTextColor="grey"
+              numberOfLines={10}
+              multiline={true}
             />
+          </View>
 
+          <View style={ScreenStyles.buttonIngresar}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={styles.button}
+              onPress={() => navigation.navigate('NuevaEntrevistaScreen')}
+
+            >
+              <Text style={ScreenStyles.buttonText}>Nueva Entrevista</Text>
+            </TouchableOpacity>
           </View>
 
         </View>
@@ -153,3 +85,30 @@ export const EntrevistasScreen = () => {
     </>
   )
 }
+
+const styles = StyleSheet.create({
+  textAreaContainer: {
+    borderColor: 'white',
+    borderWidth: 1,
+    padding: 5,
+    marginTop: 20
+  },
+  textArea: {
+    height: 150,
+    justifyContent: "flex-start"
+  },
+  select: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 20
+  },
+  button: {
+    marginTop: 20,
+    borderColor: 'white',
+    borderWidth: 2,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+
+  },
+})
