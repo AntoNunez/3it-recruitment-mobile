@@ -34,6 +34,7 @@ export const LoginScreen = ({ navigation }: Props) => {
         <View style={ScreenStyles.Container}>
           <Text style={ScreenStyles.titleSuperior}>3IT Recruitment</Text>
           <WhiteLogo />
+          
           <Text style={ScreenStyles.title}>Login</Text>
           <Text style={ScreenStyles.label}>Usuario:</Text>
           <TextInput

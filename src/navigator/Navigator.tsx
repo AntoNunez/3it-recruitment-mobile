@@ -13,6 +13,7 @@ const Stack = createStackNavigator();
 export const Navigator = () => {
 
     return (
+        
         <Stack.Navigator
         screenOptions={{
             headerShown:false,
@@ -27,6 +28,8 @@ export const Navigator = () => {
             <Stack.Screen name="NuevaEntrevistaScreen" component={NuevaEntrevistaScreen} />
 
         </Stack.Navigator>
+        
+        
 
     )
 }

@@ -72,13 +72,21 @@ export const EntrevistasScreen = ({ navigation }: Props) => {
           <View style={ScreenStyles.buttonIngresar}>
             <TouchableOpacity
               activeOpacity={0.8}
-              style={styles.button}
+              style={styles.buttonNueva}
               onPress={() => navigation.navigate('NuevaEntrevistaScreen')}
 
             >
               <Text style={ScreenStyles.buttonText}>Nueva Entrevista</Text>
             </TouchableOpacity>
           </View>
+
+          <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => navigation.replace('LoginScreen')}
+              style={styles.buttonReturn}
+            >
+              <Text style= {ScreenStyles.buttonText}>Back</Text>
+            </TouchableOpacity>
 
         </View>
       </KeyboardAvoidingView>
@@ -103,12 +111,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20
   },
-  button: {
-    marginTop: 20,
-    borderColor: 'white',
-    borderWidth: 2,
-    paddingHorizontal: 20,
-    paddingVertical: 5,
-
+  buttonReturn: {
+    position: 'absolute',
+    top: 50,
+    left:20,
+    borderWidth:1,
+    borderColor:'white',
+    paddingHorizontal:10,
+    paddingVertical:5,
+    borderRadius:100
   },
+  buttonNueva:{
+    borderWidth:1,
+    borderColor:'white',
+    paddingHorizontal:10,
+    paddingVertical:5,
+    borderRadius:100
+  }
 })

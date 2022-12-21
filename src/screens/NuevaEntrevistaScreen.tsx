@@ -1,5 +1,6 @@
+import { StackScreenProps } from '@react-navigation/stack'
 import React, { useState } from 'react'
-import { Button, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Button, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { SelectList } from 'react-native-dropdown-select-list'
 import { ScreenStyles } from '../theme/LoginTheme'
 
@@ -7,10 +8,10 @@ import { ScreenStyles } from '../theme/LoginTheme'
 
 
 
+interface Props extends StackScreenProps<any, any> { }
 
 
-
-export const NuevaEntrevistaScreen = () => {
+export const NuevaEntrevistaScreen = ({ navigation }: Props) => {
 
   const [selected, setSelected] = useState('')
   const data = [
@@ -147,9 +148,29 @@ export const NuevaEntrevistaScreen = () => {
             />
 
           </View>
+          <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => navigation.replace('EntrevistasScreen')}
+              style={styles.buttonReturn}
+            >
+              <Text style= {ScreenStyles.buttonText}>Back</Text>
+            </TouchableOpacity>
 
         </View>
       </KeyboardAvoidingView>
     </>
   )
 }
+
+const styles = StyleSheet.create({
+  buttonReturn: {
+    position: 'absolute',
+    top: 50,
+    left:20,
+    borderWidth:1,
+    borderColor:'white',
+    paddingHorizontal:10,
+    paddingVertical:5,
+    borderRadius:100
+  },
+})

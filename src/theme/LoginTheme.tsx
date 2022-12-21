@@ -14,11 +14,11 @@ Container:{
     
 },
 titleSuperior:{
-    //alignItems:'center',
+    top:20,
     paddingHorizontal:50,
     paddingVertical:50,
     color:'white',
-    fontSize: 30,
+    fontSize: 25,
     fontWeight:'bold',
 
     
