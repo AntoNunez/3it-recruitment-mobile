@@ -3,15 +3,17 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { Navigator } from './src/navigator/Navigator';
 import { EntrevistasProvider } from './src/context/EntrevistasContext';
+import { AuthProvider } from './src/context/AuthContext';
 //import { BottomTab } from './src/components/BottomTab';
  
 
-const appState = ({children}: any) =>{
+const AppState = ({children}: any) =>{
 
   return (
-    <EntrevistasProvider>
-      {children}
-    </EntrevistasProvider>
+      <AuthProvider>
+       {children}
+      </AuthProvider>
+  
   )
 }
 
@@ -19,7 +21,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Navigator/>
-    
+      <AppState/>
     </NavigationContainer>
   )
 }
